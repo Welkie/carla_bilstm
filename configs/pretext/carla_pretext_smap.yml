@@ -7,7 +7,7 @@ model_kwargs:
    head: mlp
    features_dim: 4
 res_kwargs:
-  in_channels: 55
+  in_channels: 25
   hidden_size: 64
   num_layers: 2
 
