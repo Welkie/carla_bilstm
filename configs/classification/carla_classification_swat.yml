@@ -14,7 +14,7 @@ num_heads: 1 # Only use one head
 # Model
 backbone: bilstm_ts
 res_kwargs:
-  in_channels: 55
+  in_channels: 51
   hidden_size: 64
   num_layers: 2
 
