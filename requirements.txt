@@ -1,5 +1,5 @@
 arch
-faiss-gpu
+faiss-cpu
 matplotlib>=3.7.0
 numpy<2.0.0,>=1.24.0
 pandas==2.2.2
