@@ -4,6 +4,7 @@ import numpy as np
 from torch import Tensor
 
 from utils.utils import AverageMeter, ProgressMeter
+from utils.evaluate_utils import _forward_with_pass
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def pretext_train(train_loader, model, criterion, optimizer, epoch, prev_loss, device='cuda'):
@@ -84,13 +85,13 @@ def self_sup_classification_train(train_loader, model, criterion, optimizer, epo
        
         if update_cluster_head_only: # Only calculate gradient for backprop of linear layer
             with torch.no_grad():
-                anchors_features = model(anchors, forward_pass='backbone')
-                nneighbors_features = model(nneighbors, forward_pass='backbone')
-                fneighbors_features = model(fneighbors, forward_pass='backbone')
+                anchors_features = _forward_with_pass(model, anchors, 'backbone')
+                nneighbors_features = _forward_with_pass(model, nneighbors, 'backbone')
+                fneighbors_features = _forward_with_pass(model, fneighbors, 'backbone')
 
-            anchors_output = model(anchors_features, forward_pass='head')
-            nneighbors_output = model(nneighbors_features, forward_pass='head')
-            fneighbors_output = model(fneighbors_features, forward_pass='head')
+            anchors_output = _forward_with_pass(model, anchors_features, 'head')
+            nneighbors_output = _forward_with_pass(model, nneighbors_features, 'head')
+            fneighbors_output = _forward_with_pass(model, fneighbors_features, 'head')
 
         else: # Calculate gradient for backprop of complete network
             anchors_output = model(anchors)
