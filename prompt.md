@@ -1,186 +1,136 @@
-!python run_smd.py --phase 1 
-Found Kaggle dataset at: /kaggle/input/datasets/mgusat/smd-onmiad/ServerMachineDataset
-Copying /kaggle/input/datasets/mgusat/smd-onmiad/ServerMachineDataset/train to /kaggle/working/carla_bilstm/datasets/smd/train...
-Copying /kaggle/input/datasets/mgusat/smd-onmiad/ServerMachineDataset/test to /kaggle/working/carla_bilstm/datasets/smd/test...
-Copying /kaggle/input/datasets/mgusat/smd-onmiad/ServerMachineDataset/test_label to /kaggle/working/carla_bilstm/datasets/smd/test_label...
-Found total 28 datasets in smd.
-PHASE 1: Running first 14 datasets.
+!python run_yahoo.py
+Found Kaggle dataset at: /kaggle/input/datasets/saostken/yahoo-a1/yahoo_A1
+Copying real_1.csv ...
+Copying real_2.csv ...
+Copying real_3.csv ...
+Copying real_4.csv ...
+Copying real_5.csv ...
+Copying real_6.csv ...
+Copying real_7.csv ...
+Copying real_8.csv ...
+Copying real_9.csv ...
+Copying real_10.csv ...
+Copying real_11.csv ...
+Copying real_12.csv ...
+Copying real_13.csv ...
+Copying real_14.csv ...
+Copying real_15.csv ...
+Copying real_16.csv ...
+Copying real_17.csv ...
+Copying real_18.csv ...
+Copying real_19.csv ...
+Copying real_20.csv ...
+Copying real_21.csv ...
+Copying real_22.csv ...
+Copying real_23.csv ...
+Copying real_24.csv ...
+Copying real_25.csv ...
+Copying real_26.csv ...
+Copying real_27.csv ...
+Copying real_28.csv ...
+Copying real_29.csv ...
+Copying real_30.csv ...
+Copying real_31.csv ...
+Copying real_32.csv ...
+Copying real_33.csv ...
+Copying real_34.csv ...
+Copying real_35.csv ...
+Copying real_36.csv ...
+Copying real_37.csv ...
+Copying real_38.csv ...
+Copying real_39.csv ...
+Copying real_40.csv ...
+Copying real_41.csv ...
+Copying real_42.csv ...
+Copying real_43.csv ...
+Copying real_44.csv ...
+Copying real_45.csv ...
+Copying real_46.csv ...
+Copying real_47.csv ...
+Copying real_48.csv ...
+Copying real_49.csv ...
+Copying real_50.csv ...
+Copying real_51.csv ...
+Copying real_52.csv ...
+Copying real_53.csv ...
+Copying real_54.csv ...
+Copying real_55.csv ...
+Copying real_56.csv ...
+Copying real_57.csv ...
+Copying real_58.csv ...
+Copying real_59.csv ...
+Copying real_60.csv ...
+Copying real_61.csv ...
+Copying real_62.csv ...
+Copying real_63.csv ...
+Copying real_64.csv ...
+Copying real_65.csv ...
+Copying real_66.csv ...
+Copying real_67.csv ...
+
+Found 55 Yahoo-A1 files: real_1.csv ... real_67.csv
 
 ==============================
-STARTING EXPERIMENTS SMD - PHASE 1
+STARTING EXPERIMENTS — Yahoo-A1
 ==============================
 GPU available: Tesla T4
 
-Running dataset: machine-1-1.txt
-Max GPU Memory after machine-1-1.txt: 1690.26 MB
+Running dataset: real_1.csv
+Error running pretext for real_1.csv: Command '['/usr/bin/python3', 'carla_pretext.py', '--config_env', 'configs/env.yml', '--config_exp', 'configs/pretext/carla_pretext_yahoo.yml', '--fname', 'real_1.csv']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/kaggle/working/carla_bilstm/carla_pretext.py", line 240, in <module>
+    main()
+  File "/kaggle/working/carla_bilstm/carla_pretext.py", line 104, in main
+    df = pandas.read_csv(filename)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/zahraz/hz18_scratch/zahraz/datasets/Yahoo/real_1.csv'
 
-Running dataset: machine-1-2.txt
-Max GPU Memory after machine-1-2.txt: 1690.26 MB
-
-Running dataset: machine-1-3.txt
-Max GPU Memory after machine-1-3.txt: 1690.26 MB
-
-Running dataset: machine-1-4.txt
-Error running classification for machine-1-4.txt: Command '['/usr/bin/python3', 'carla_classification.py', '--config_env', 'configs/env.yml', '--config_exp', 'configs/classification/carla_classification_smd.yml', '--fname', 'machine-1-4.txt']' returned non-zero exit status 1.
+Error running classification for real_1.csv: Command '['/usr/bin/python3', 'carla_classification.py', '--config_env', 'configs/env.yml', '--config_exp', 'configs/classification/carla_classification_yahoo.yml', '--fname', 'real_1.csv']' returned non-zero exit status 1.
 Traceback (most recent call last):
   File "/kaggle/working/carla_bilstm/carla_classification.py", line 216, in <module>
     main()
-  File "/kaggle/working/carla_bilstm/carla_classification.py", line 192, in main
-    predictions = get_predictions(p, val_dataloader, model, False, False)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/kaggle/working/carla_bilstm/utils/evaluate_utils.py", line 74, in get_predictions
-    res = model(ts.view(bs, h, w), forward_pass='return_all')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
+  File "/kaggle/working/carla_bilstm/carla_classification.py", line 52, in main
+    train_dataset = get_aug_train_dataset(p, train_transformations, to_neighbors_dataset = True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/carla_bilstm/utils/common_config.py", line 173, in get_aug_train_dataset
+    dataloader = torch.load(p['contrastive_dataset'], weights_only=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 1500, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 768, in _open_file_like
+    return _open_file(name_or_buffer, mode)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/data_parallel.py", line 197, in forward
-    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/data_parallel.py", line 214, in parallel_apply
-    return parallel_apply(
-           ^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/parallel_apply.py", line 133, in parallel_apply
-    output.reraise()
-  File "/usr/local/lib/python3.12/dist-packages/torch/_utils.py", line 775, in reraise
-    raise exception
-TypeError: Caught TypeError in replica 1 on device 1.
-Original Traceback (most recent call last):
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/parallel_apply.py", line 103, in _worker
-    output = module(*input, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: ClusteringModel.forward() missing 1 required positional argument: 'x'
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 749, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'results/yahoo/real_1.csv/pretext/con_train_dataset.pth'
 
+Max GPU Memory after real_1.csv: 0.00 MB
 
-Max GPU Memory after machine-1-4.txt: 1690.26 MB
-
-Running dataset: machine-1-5.txt
-Error running classification for machine-1-5.txt: Command '['/usr/bin/python3', 'carla_classification.py', '--config_env', 'configs/env.yml', '--config_exp', 'configs/classification/carla_classification_smd.yml', '--fname', 'machine-1-5.txt']' returned non-zero exit status 1.
+Running dataset: real_2.csv
+Error running pretext for real_2.csv: Command '['/usr/bin/python3', 'carla_pretext.py', '--config_env', 'configs/env.yml', '--config_exp', 'configs/pretext/carla_pretext_yahoo.yml', '--fname', 'real_2.csv']' returned non-zero exit status 1.
 Traceback (most recent call last):
-  File "/kaggle/working/carla_bilstm/carla_classification.py", line 216, in <module>
+  File "/kaggle/working/carla_bilstm/carla_pretext.py", line 240, in <module>
     main()
-  File "/kaggle/working/carla_bilstm/carla_classification.py", line 192, in main
-    predictions = get_predictions(p, val_dataloader, model, False, False)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/kaggle/working/carla_bilstm/utils/evaluate_utils.py", line 74, in get_predictions
-    res = model(ts.view(bs, h, w), forward_pass='return_all')
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/data_parallel.py", line 197, in forward
-    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/data_parallel.py", line 214, in parallel_apply
-    return parallel_apply(
-           ^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/parallel_apply.py", line 133, in parallel_apply
-    output.reraise()
-  File "/usr/local/lib/python3.12/dist-packages/torch/_utils.py", line 775, in reraise
-    raise exception
-TypeError: Caught TypeError in replica 1 on device 1.
-Original Traceback (most recent call last):
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/parallel/parallel_apply.py", line 103, in _worker
-    output = module(*input, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: ClusteringModel.forward() missing 1 required positional argument: 'x'
-
-
-Max GPU Memory after machine-1-5.txt: 1690.26 MB
-
-Running dataset: machine-1-6.txt
-Max GPU Memory after machine-1-6.txt: 1690.26 MB
-
-Running dataset: machine-1-7.txt
-Max GPU Memory after machine-1-7.txt: 1690.26 MB
-
-Running dataset: machine-1-8.txt
-Max GPU Memory after machine-1-8.txt: 1690.26 MB
-
-Running dataset: machine-2-1.txt
-Max GPU Memory after machine-2-1.txt: 1690.26 MB
-
-Running dataset: machine-2-2.txt
-Max GPU Memory after machine-2-2.txt: 1690.26 MB
-
-Running dataset: machine-2-3.txt
-Max GPU Memory after machine-2-3.txt: 1690.26 MB
-
-Running dataset: machine-2-4.txt
-Max GPU Memory after machine-2-4.txt: 1690.26 MB
-
-Running dataset: machine-2-5.txt
-Max GPU Memory after machine-2-5.txt: 1690.26 MB
-
-Running dataset: machine-2-6.txt
-Max GPU Memory after machine-2-6.txt: 1703.86 MB
-
-==============================
-DONE PHASE 1 (14 datasets)
-Total time (this phase): 6852.58 s
-Avg / dataset: 489.47 s
-==============================
-
-Evaluating Phase 1 results...
-
-==============================
-STARTING EVALUATION SMD
-==============================
-/kaggle/working/carla_bilstm/run_smd.py:207: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
-  res_df = pd.concat([res_df, new_row], ignore_index=True)
-machine-1-1.txt: PR-AUC=0.1183, TP=795, FP=3862, FN=62
-machine-1-2.txt: PR-AUC=0.5147, TP=276, FP=316, FN=215
-machine-1-3.txt: PR-AUC=0.3550, TP=224, FP=338, FN=415
-Skip machine-1-4.txt (missing files)
-Skip machine-1-5.txt (missing files)
-machine-1-6.txt: PR-AUC=0.7162, TP=1616, FP=1778, FN=270
-machine-1-7.txt: PR-AUC=0.2706, TP=833, FP=2084, FN=126
-machine-1-8.txt: PR-AUC=0.3724, TP=329, FP=379, FN=584
-machine-2-1.txt: PR-AUC=0.2835, TP=340, FP=511, FN=412
-machine-2-2.txt: PR-AUC=0.4432, TP=689, FP=1007, FN=301
-machine-2-3.txt: PR-AUC=0.2517, TP=78, FP=20, FN=361
-machine-2-4.txt: PR-AUC=0.4799, TP=881, FP=707, FN=229
-machine-2-5.txt: PR-AUC=0.3292, TP=681, FP=1813, FN=300
-machine-2-6.txt: PR-AUC=0.3970, TP=125, FP=56, FN=240
-Saved metrics to results/smd/phase_1_metrics_df.csv
-
-==============================
-FINAL RESULTS SMD
-==============================
-PRECISION: 0.3479
-RECALL: 0.6614
-F1: 0.4560
-AUPR_MEAN: 0.3776
-AUPR_STD: 0.1522
-TP: 6867
-TN: 35091
-FP: 12871
-FN: 3515
-TOTAL_DATASETS: 12
-Phase 1 completed. Please push 'results/smd/phase_1_metrics_df.csv' and 'results/smd/phase_1_time_stats.json' to continue in Phase 2.
-
-đây là lỗi khi tui chạy file smd phase 1 trước khi update code, bạn check xem lỗi này được fix chưa, nếu chưa thì fix cho tui.
+  File "/kaggle/working/carla_bilstm/carla_pretext.py", line 104, in main
+    df = pandas.read_csv(filename)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
