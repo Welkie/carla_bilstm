@@ -42,10 +42,6 @@ def get_model(p, pretrain_path=None):
     elif p['backbone'] == 'mamba_ts':
         from models.mamba_time import mamba_ts
         backbone = mamba_ts(**p['mamba_kwargs'])
-        
-    elif p['backbone'] == 'bilstm_ts':
-        from models.resent_time import bilstm_ts
-        backbone = bilstm_ts(**p['res_kwargs'])
 
     else:
         raise ValueError('Invalid backbone {}'.format(p['backbone']))

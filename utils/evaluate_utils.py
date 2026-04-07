@@ -33,12 +33,6 @@ def contrastive_evaluate(val_loader, model, ts_repository):
     return top1.avg
 
 
-def _forward_with_pass(model, x, forward_pass):
-    """Call model.forward() with forward_pass, bypassing DataParallel if needed."""
-    m = model.module if hasattr(model, 'module') else model
-    return m(x, forward_pass=forward_pass)
-
-
 @torch.no_grad()
 def get_predictions(p, dataloader, model, return_features=False, is_training=False):
     # Make predictions on a dataset with neighbors
@@ -77,7 +71,7 @@ def get_predictions(p, dataloader, model, return_features=False, is_training=Fal
         else:
             targets.append(batch['target'])
 
-        res = _forward_with_pass(model, ts.view(bs, h, w), 'return_all')
+        res = model(ts.view(bs, h, w), forward_pass='return_all')
         output = res['output']
         if return_features:
             features[ptr: ptr+bs] = res['features']
