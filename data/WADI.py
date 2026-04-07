@@ -3,10 +3,13 @@ import os
 import pandas
 import numpy as np
 import pandas as pd
+import torch
 from torch.utils.data import Dataset
 from utils.mypath import MyPath
 import ast
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class WADI(Dataset):
@@ -36,9 +39,9 @@ class WADI(Dataset):
         wsz, stride = 400, 10
 
         if self.train:
-            fname += '_14days_new.csv'
+            fname = 'WADI_14days_new.csv'
         else:
-            fname += '_attackdataLABLE.csv'
+            fname = 'WADI_attackdataLABLE.csv'
 
         file_path = os.path.join(self.root, fname)
         fr = pd.read_csv(file_path)
