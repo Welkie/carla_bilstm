@@ -267,7 +267,7 @@ def main():
 
     # Define the Kaggle input path provided by the user
     kaggle_input_path = "/kaggle/input/datasets/vishala28/swat-dataset-secure-water-treatment-system"
-    
+
     writable_dataset_path = os.path.join(BASE_DIR, "datasets", "swat")
 
     # Ensure writable directory exists
@@ -322,7 +322,7 @@ def main():
              # Copy to writable path with correct names if they don't exist
              if normal_file:
                  src = os.path.join(kaggle_input_path, normal_file)
-                 dst = os.path.join(writable_dataset_path, "swat_train.csv")
+                 dst = os.path.join(writable_dataset_path, "normal.csv")
                  if not os.path.exists(dst):
                      print(f"Copying {src} to {dst}...")
                      shutil.copyfile(src, dst)
@@ -331,7 +331,7 @@ def main():
 
              if attack_file:
                  src = os.path.join(kaggle_input_path, attack_file)
-                 dst = os.path.join(writable_dataset_path, "swat_test.csv")
+                 dst = os.path.join(writable_dataset_path, "attack.csv")
                  if not os.path.exists(dst):
                      print(f"Copying {src} to {dst}...")
                      shutil.copyfile(src, dst)
@@ -345,10 +345,10 @@ def main():
         print("Kaggle input path not found. using local path if available.")
         
     # Check if files exist (Common check)
-    if not os.path.exists(os.path.join(writable_dataset_path, "swat_train.csv")) or \
-       not os.path.exists(os.path.join(writable_dataset_path, "swat_test.csv")):
-        print(f"Warning: swat_train.csv or swat_test.csv not found in {writable_dataset_path}")
-        print("Please ensure 'datasets/swat/swat_train.csv' and 'datasets/swat/swat_test.csv' exist.")
+    if not os.path.exists(os.path.join(writable_dataset_path, "normal.csv")) or \
+       not os.path.exists(os.path.join(writable_dataset_path, "attack.csv")):
+        print(f"Warning: normal.csv or attack.csv not found in {writable_dataset_path}")
+        print("Please ensure 'datasets/swat/normal.csv' and 'datasets/swat/attack.csv' exist.")
     
     os.environ['swat_DATASET_PATH'] = writable_dataset_path
     print(f"Set swat_DATASET_PATH to {writable_dataset_path}")
@@ -377,37 +377,21 @@ def process_merged_dataset(merged_path, output_dir):
         # Strip whitespace from columns
         df.columns = df.columns.str.strip()
         
-        print(f"Merged CSV columns: {list(df.columns)}")
-        
-        # Rename 'Normal/Attack' column to 'attack' and convert to numeric
-        # The Kaggle SWaT merged.csv uses 'Normal/Attack' with string values
-        if 'Normal/Attack' in df.columns:
-            df['Normal/Attack'] = df['Normal/Attack'].astype(str).str.strip()
-            df.rename(columns={'Normal/Attack': 'attack'}, inplace=True)
-            df['attack'] = df['attack'].map({'Normal': 0, 'Attack': 1, 'A ttack': 1})
-            # Fill any unmapped values with 0
-            df['attack'] = df['attack'].fillna(0).astype(int)
-            print(f"Converted 'Normal/Attack' -> 'attack' (0=Normal, 1=Attack)")
-            print(f"  Label distribution: {df['attack'].value_counts().to_dict()}")
-        elif 'attack' not in df.columns:
-            print(f"WARNING: Neither 'Normal/Attack' nor 'attack' column found!")
-            print(f"  Available columns: {list(df.columns)}")
-        
         # Split dung: train = 496800 đầu, test = 449919 cuối
         # Bo qua phan o giua (449919 rows normal thừa)
         train_df = df.iloc[:496800].copy()
         test_df  = df.iloc[-449919:].copy()
         
-        # Save to destination with names matching SWAT.py loader expectation: {fname}_train.csv / {fname}_test.csv
-        train_path = os.path.join(output_dir, "swat_train.csv")
-        test_path = os.path.join(output_dir, "swat_test.csv")
+        # Save to destination
+        train_path = os.path.join(output_dir, "normal.csv")
+        test_path = os.path.join(output_dir, "attack.csv")
         
         train_df.to_csv(train_path, index=False)
         test_df.to_csv(test_path, index=False)
         
         print(f"Split merged.csv into:")
-        print(f"Train (swat_train.csv): {len(train_df)} rows")
-        print(f"Test (swat_test.csv): {len(test_df)} rows")
+        print(f"Train (normal.csv): {len(train_df)} rows")
+        print(f"Test (attack.csv): {len(test_df)} rows")
         
     except Exception as e:
         print(f"Error processing merged dataset: {e}")
