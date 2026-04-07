@@ -377,6 +377,22 @@ def process_merged_dataset(merged_path, output_dir):
         # Strip whitespace from columns
         df.columns = df.columns.str.strip()
         
+        print(f"Merged CSV columns: {list(df.columns)}")
+        
+        # Rename 'Normal/Attack' column to 'attack' and convert to numeric
+        # The Kaggle SWaT merged.csv uses 'Normal/Attack' with string values
+        if 'Normal/Attack' in df.columns:
+            df['Normal/Attack'] = df['Normal/Attack'].astype(str).str.strip()
+            df.rename(columns={'Normal/Attack': 'attack'}, inplace=True)
+            df['attack'] = df['attack'].map({'Normal': 0, 'Attack': 1, 'A ttack': 1})
+            # Fill any unmapped values with 0
+            df['attack'] = df['attack'].fillna(0).astype(int)
+            print(f"Converted 'Normal/Attack' -> 'attack' (0=Normal, 1=Attack)")
+            print(f"  Label distribution: {df['attack'].value_counts().to_dict()}")
+        elif 'attack' not in df.columns:
+            print(f"WARNING: Neither 'Normal/Attack' nor 'attack' column found!")
+            print(f"  Available columns: {list(df.columns)}")
+        
         # Split dung: train = 496800 đầu, test = 449919 cuối
         # Bo qua phan o giua (449919 rows normal thừa)
         train_df = df.iloc[:496800].copy()
