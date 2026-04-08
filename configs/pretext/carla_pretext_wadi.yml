@@ -22,7 +22,7 @@ criterion_kwargs:
    temperature: 0.4
 
 # Hyperparameters
-epochs: 10
+epochs: 30
 optimizer: adam
 optimizer_kwargs:
    lr: 0.001
@@ -30,8 +30,8 @@ optimizer_kwargs:
 scheduler: cosine
 scheduler_kwargs:
    lr_decay_rate: 0.01
-batch_size: 64
-num_workers: 0
+batch_size: 256
+num_workers: 2
 
 # Transformations
 augmentation_strategy: ts
