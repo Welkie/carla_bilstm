@@ -15,7 +15,7 @@ num_heads: 1 # Only use one head
 backbone: bilstm_ts
 res_kwargs:
   in_channels: 51
-  hidden_size: 64
+  hidden_size: 128
   num_layers: 2
 
 # Dataset
@@ -42,4 +42,4 @@ num_workers: 2
 scheduler: constant
 
 anomaly_kwargs:
-   portion: 0.99
+   portion: 0.95

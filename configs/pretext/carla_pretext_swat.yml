@@ -8,7 +8,7 @@ model_kwargs:
    features_dim: 4
 res_kwargs:
   in_channels: 51
-  hidden_size: 64
+  hidden_size: 128
   num_layers: 2
 
 # Dataset
@@ -39,4 +39,4 @@ transformation_kwargs:
    noise_sigma: 0.01
 
 anomaly_kwargs:
-   portion: 0.99
+   portion: 0.95
