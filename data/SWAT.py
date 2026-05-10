@@ -35,7 +35,7 @@ class SWAT(Dataset):
         self.data = []
         self.targets = []
         labels = []
-        wsz, stride = 300, 50
+        wsz, stride = 400, 50
 
         if self.train:
             file_path = os.path.join(self.root, "normal.csv")
